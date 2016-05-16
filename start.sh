@@ -19,4 +19,5 @@ fi
 echo "with envs:"
 echo $config
 
+sleep 30
 java $config $JAVA_OPTS -jar /root/app.jar server /root/config.yml

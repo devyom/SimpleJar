@@ -1,0 +1,28 @@
+esnode:
+  command:
+  - elasticsearch
+  - --discovery.zen.ping.unicast.hosts=master
+  cpu_shares: 100
+  image: dmanchon/elasticsearch:v0.2
+  links:
+  - master:master
+  mem_limit: 1000000000
+
+master:
+  cpu_shares: 100
+  image: dmanchon/elasticsearch:v0.2
+  mem_limit: 1000000000
+
+node:
+  image: cassandra:3.0
+
+service:
+  image: dmanchon/example:0
+  ports:
+    - "9000:9000"
+  links:
+    - esnode:esnode
+    - master:master
+  environment:
+    - CASSANDRA_ADDR=node
+    - ES_ADDR=master
