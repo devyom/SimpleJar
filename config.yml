@@ -1,0 +1,9 @@
+cassandraServer: 192.168.1.2
+elasticsearchServer: 192.168.1.2
+server:
+  applicationConnectors:
+  - type: http 
+    port: 9000
+  adminConnectors:
+  - type: http
+    port: 9001
